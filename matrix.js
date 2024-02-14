@@ -72,15 +72,32 @@ const showResult2D = (title, containerId, dataArray) => {
 function performOperation(operation) {
     let matrix1 = getMatrixData2D('matrix1');
     let matrix2 = getMatrixData2D('matrix2');
-    console.log("1st Matrix",matrix1);
-    console.log("2nd Matrix", matrix2);
-    console.log("Operation", operation);
-    // Just a test result
-    let result = [1, 2, 3, 4, 5, 6, 7, 8];
-    // Call your matrix calculation functions here
-    // For example: if (operation === 'add') { addMatrices(matrix1, matrix2); }
-	// prints suitable messages for impossible situation
-    showResult('The Result', 'matrix3', 2, 4, result); // use suitable function for printing results
+
+    let result; // This will hold the result of the matrix operation
+
+    switch (operation) {
+        case 'add':
+            result = addMatrices(matrix1, matrix2);
+            break;
+        case 'subtract':
+            result = subtractMatrices(matrix1, matrix2);
+            break;
+        case 'multiply':
+            result = multiplyMatrices(matrix1, matrix2);
+            break;
+        default:
+            result = "Unsupported operation.";
+            break;
+    }
+
+    // Check if the result is a string, indicating an error message, or a matrix
+    if (typeof result === "string") {
+        // Display error message
+        document.getElementById('matrix3').innerHTML = `<p>${result}</p>`;
+    } else {
+        // Display result using showResult2D if the operation was successful
+        showResult2D('The Result', 'matrix3', result);
+    }
 }
 
 const getMatrixData1D = function (matrixId) {
