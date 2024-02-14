@@ -131,7 +131,6 @@ const getMatrixData2D = function (matrixId) {
     return matrixData;
 };
 
-
 // Add your matrix calculation functions here
 // The functions must check the posibility of calculation too.
 function addMatrices(matrix1, matrix2){ 
